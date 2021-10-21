@@ -1,2 +1,2 @@
-# Estate_Manager
-Easy, Effective and Efficient Estate Management Application built with Django
+# estatemanager
+Simple Estate Management Application

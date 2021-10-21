@@ -1,0 +1,45 @@
+{% load widget_tweaks %}
+
+<div class="col-xl-4 col-md-12">
+    <div class="card">
+        {% if messages %}
+            {% for message in messages %}
+                <h5 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h5>
+            {% endfor %}
+        {% endif %}
+        <div class="card-header">
+            <h5>Community Creation Form</h5>
+        </div>
+        <div class="card-block">
+            <form action="{% url 'communities:communities_dashboard' %}" method="post" class="form-material">
+                {% csrf_token %}
+                <div class="form-group form-primary form-static-label">
+                    {{ form.communitytype}}
+                    <span class="form-bar"></span>
+                    <label class="float-label">Community Type Name</label>
+                </div>
+
+                <div class="form-group form-primary form-static-label">
+                    {{ form.commnum}}
+                    <span class="form-bar"></span>
+                    <label class="float-label">Community Number</label>
+                </div>
+
+                <button class="btn btn-grd-primary btn-round waves-effect waves-light" type="submit">Create</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block extrascript %}
+    <script>
+        var m = document.getElementsByClassName("animate__fadeIn");  // Return an array
+
+        setTimeout(function(){
+        if (m && m.length) {
+            m[0].classList.add('animate__fadeOut');
+        }
+        }, 2000);
+    </script>
+{% endblock extrascript %}

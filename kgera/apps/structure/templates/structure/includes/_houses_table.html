@@ -1,0 +1,45 @@
+<div class="col-xl-8 col-md-12">
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>Houses</h5>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="fa fa fa-wrench open-card-option"></i></li>
+          <li><i class="fa fa-window-maximize full-card"></i></li>
+          <li><i class="fa fa-minus minimize-card"></i></li>
+          <li><i class="fa fa-refresh reload-card"></i></li>
+          <li><i class="fa fa-trash close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>House Code</th>
+                <th>Community</th>
+                <th>House Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for house in houses %}
+                <tr>
+                    <td>{{ house.housecode }}</td>
+                    <td>{{ house.community }}</td>
+                    {% if house.housestatus == 0 %}
+                      <td>Vacant</td>
+                    {% else %}
+                      <td>Occupied</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right m-r-20">
+          <a href="{% url 'houses:all_houses' %}" class="b-b-primary text-primary">View all Houses</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

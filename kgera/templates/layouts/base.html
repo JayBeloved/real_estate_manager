@@ -1,0 +1,161 @@
+{% load static%}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Other Meta Tags-->
+    <meta name="description" content="Kabusa Garden Estate Management Application. Built With Django" />
+    <meta name="keywords" content="Admin, Django, Estate Management, bootstrap" />
+    <meta name="author" content="John J. Lawal"/>
+
+    <!--Site Title-->
+    <title>KGERA | {% block title %}{% endblock title %}</title>
+
+    <!--Favicon icon-->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <!--Required Vendors-->
+    <link rel="stylesheet" href="{% static 'css/waves.min.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'icons/themify/themify-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'icons/fontawesome/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.css' %}">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="{% static 'export/export.css' %}" type="text/css" media="all" />
+    <!--Custom Styles-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!-- Animate.Css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <!-- Pre-loader start -->
+  <div class="theme-loader">
+      <div class="loader-track">
+          <div class="preloader-wrapper">
+              <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+              <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+            
+              <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+            
+              <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                      <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                      <div class="circle"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Pre-loader end -->
+ <div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        {% include 'includes/_topnav.html' %}
+        
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+                <!-- Sidebar -->
+                {% include 'includes/_sidenav.html' %}
+                <div class="pcoded-content">
+                    <!-- Page-header -->
+                    {% include 'includes/_pageheader.html' %}
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <!-- Page-body  -->
+                                <div class="page-body">
+                                    <div class="row">
+                                        <!-- Counters -->
+                                        {% block counters %}{% endblock counters %}
+                                        <!-- Other Cards -->
+                                        {% block card1 %}{% endblock card1 %}
+                                        {% block card2 %}{% endblock card2 %}
+                                        {% block card3 %}{% endblock card3 %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <!--Required Javascripts-->
+  <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery/jquery-ui.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/widget/excanvas.js' %}"></script>
+  <!--Waves js-->
+  <script type="text/javascript" src="{% static 'js/vendors/waves.min.js' %}"></script>
+  <!--jquery slimscroll js-->
+  <script type="text/javascript" src="{% static 'js/jquery/jquery.slimscroll.js' %}"></script>
+  <!--modernizr js-->
+  <script type="text/javascript" src="{% static 'js/vendors/modernizr.js' %}"></script>
+  <!--slimscroll js-->
+  <script type="text/javascript" src="{% static 'js/others/SmoothScroll.js' %}"></script>
+  <script src="{% static 'js/jquery/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+  <!--Chart js-->
+  <script type="text/javascript" src="{% static 'js/others/Chart.js' %}"></script>
+  <!--amchart js-->
+  <script src="../../www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="{% static 'js/widget/amchart/gauge.js' %}"></script>
+  <script src="{% static 'js/widget/amchart/serial.js' %}"></script>
+  <script src="{% static 'js/widget/amchart/light.js' %}"></script>
+  <script src="{% static 'js/widget/amchart/pie.min.js' %}"></script>
+  <script src="{% static 'export/export.min.js' %}"></script>
+ 
+  <!--menu js-->
+  <script src="{% static 'js/vendors/pcoded.min.js' %}"></script>
+  <script src="{% static 'js/others/vertical-layout.min.js' %}"></script>
+  <!--custom js-->
+  <script type="text/javascript" src="{% static 'js/custom/custom-dashboard.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom/script.js' %}"></script>
+
+  {% block extrascript %}{% endblock extrascript %}
+</body>
+</html>

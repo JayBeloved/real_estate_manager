@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Other Meta Tags-->
+    <meta name="description" content="Kabusa Garden Estate Management Application. Built With Django" />
+    <meta name="keywords" content="Admin, Django, Estate Management, bootstrap" />
+    <meta name="author" content="John J. Lawal"/>
+
+    <!--Site Title-->
+    <title>KGERA | {% block title %}{% endblock title %}</title>
+
+    <!--Favicon icon-->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Vendors -->
+    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'accounts/styles.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/vendor/font-awesome/css/font-awesome.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/util.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/main.css' %}">
+    <!--===============================================================================================-->
+    <!-- Extra Styles -->
+    {% block extrastyle %}
+    {% endblock extrastyle %}
+
+</head>
+<body>
+    {% block content %}{% endblock content %}
+    
+    <!--===============================================================================================-->	
+	<script src="{% static 'accounts/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+	<script src="{% static 'accounts/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'accounts/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!--===============================================================================================-->
+	<script src="{% static 'accounts/vendor/select2/select2.min.js' %}"></script>
+    <!--===============================================================================================-->
+	<script src="{% static 'accounts/vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+    <!--===============================================================================================-->
+
+</body>
+</html>

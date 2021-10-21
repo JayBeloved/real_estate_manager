@@ -1,0 +1,8 @@
+dj-database-url
+Django
+psycopg2-binary
+python-decouple
+pytz
+django-widget-tweaks
+django-bootstrap-v5
+Pillow

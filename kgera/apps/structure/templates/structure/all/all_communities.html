@@ -1,0 +1,48 @@
+{% extends 'structure/layouts/allbase.html' %}
+
+{% block title %}All Communities{% endblock title %}
+
+{% block card1 %}
+<div class="col-xl-12 col-md-12">
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>All Communities</h5>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="fa fa fa-wrench open-card-option"></i></li>
+          <li><i class="fa fa-window-maximize full-card"></i></li>
+          <li><i class="fa fa-minus minimize-card"></i></li>
+          <li><i class="fa fa-refresh reload-card"></i></li>
+          <li><i class="fa fa-trash close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Community Type</th>
+                <th>Community No.</th>
+                <th>Community Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for community in communities %}
+                <tr>
+                    <td>{{ community.communitytype }}</td>
+                    <td>{{ community.commnum }}</td>
+                    <td>{{ community.commcode }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right m-r-20">
+          <a href="{% url 'communities:communities_dashboard' %}" class="b-b-primary text-primary">Back To Dashboard</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock card1 %}

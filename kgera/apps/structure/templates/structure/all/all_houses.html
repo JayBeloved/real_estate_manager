@@ -1,0 +1,90 @@
+{% extends 'structure/layouts/allbase.html' %}
+
+{% block title %}All Houses{% endblock title %}
+
+{% block card1 %}
+<div class="col-xl-12 col-md-12">
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>All Houses</h5>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="fa fa fa-wrench open-card-option"></i></li>
+          <li><i class="fa fa-window-maximize full-card"></i></li>
+          <li><i class="fa fa-minus minimize-card"></i></li>
+          <li><i class="fa fa-refresh reload-card"></i></li>
+          <li><i class="fa fa-trash close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>House Code</th>
+                <th>Community</th>
+                <th>House Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for house in houses %}
+                <tr>
+                    <td>{{ house.housecode }}</td>
+                    <td>{{ house.community }}</td>
+                    {% if house.housestatus == 0 %}
+                      <td>Vacant</td>
+                    {% else %}
+                      <td>Occupied</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right m-r-20">
+          {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+                <a class="badge badge-inverse-primary" href="?page=1" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="First Page">First</a>
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.previous_page_number }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Previous Page">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <a class="badge badge-primary" style="color: white !important;" href="?page={{ num }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Page {{ num }}">{{ num }}</a>
+              {% elif num > page_obj.number|add:'-4' and num < page_obj.number|add:'4' %}
+                <a class="badge badge-inverse-primary" href="?page={{ num }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Page {{ num }}">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.next_page_number }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Next Page">Next</a>
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.paginator.num_pages }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Last Page">Last</a>
+            {% endif %}
+
+          {% endif %}
+          <a href="{% url 'houses:houses_dashboard' %}" class="b-b-primary text-primary">Back To Dashboard</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock card1 %}
+
+{% block extrascript %}
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: function() {
+                return $('#primary-popover-content').html();
+            }
+        });
+    });
+
+</script>
+{% endblock extrascript %}

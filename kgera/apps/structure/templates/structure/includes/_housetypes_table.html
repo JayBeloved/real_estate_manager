@@ -1,0 +1,53 @@
+<div class="col-xl-8 col-md-12">
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>House Types</h5>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="fa fa fa-wrench open-card-option"></i></li>
+          <li><i class="fa fa-window-maximize full-card"></i></li>
+          <li><i class="fa fa-minus minimize-card"></i></li>
+          <li><i class="fa fa-refresh reload-card"></i></li>
+          <li><i class="fa fa-trash close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>House Type</th>
+                <th>Has Block?</th>
+                <th>No. Of Blocks</th>
+                <th>Has Flats?</th>
+                <th>No. Of Flats</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for house_type in housetypes %}
+                <tr>
+                    <td>{{ house_type.htype }}</td>
+                    {% if house_type.is_block %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+                    <td>{{ house_type.block_count }}</td>
+                    {% if house_type.is_flat %}
+                    <td>Yes</td>
+                    {% else %}
+                    <td>No</td>
+                    {% endif %}
+                    <td>{{ house_type.flat_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right m-r-20">
+          <a href="{% url 'housetype:all_housetypes' %}" class="b-b-primary text-primary">View all House Types</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{% extends 'structure/layouts/structurebase.html' %}
+
+{% block title %}House Types{% endblock title %}
+
+{% block card1 %}
+    {% include 'structure/includes/_housetypes_table.html' %}
+{% endblock card1 %}
+{% block card2 %}
+    {% include 'structure/includes/_newhousetypeform.html' %}
+{% endblock card2 %}

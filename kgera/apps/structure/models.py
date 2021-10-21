@@ -33,8 +33,7 @@ COUNT_CHOICES = (
 
 
 class HouseType(models.Model):
-      
-    htype = models.CharField('House Type', unique= True, max_length=200)
+    htype = models.CharField('House Type', unique=True, max_length=200)
     is_block = models.BooleanField(default=False)
     block_count = models.PositiveSmallIntegerField(choices=COUNT_CHOICES, default=ONE)
     is_flat = models.BooleanField(default=False)
@@ -43,11 +42,11 @@ class HouseType(models.Model):
     def __str__(self):
         return f"{self.htype}"
 
+
 class CommunityType(models.Model):
     housetype = models.OneToOneField(HouseType, on_delete=models.CASCADE)
     commtype = models.CharField('Community Type Code', max_length=3, default='A')
     description = models.TextField(default="Description of the Community Type")
-
 
     def __str__(self):
         return f"{self.commtype}"
@@ -61,6 +60,7 @@ class Community(models.Model):
     def __str__(self):
         return f"{self.commcode}"
 
+
 class Houses(models.Model):
     VACANT = 0
     OCCUPIED = 1
@@ -70,11 +70,9 @@ class Houses(models.Model):
         (OCCUPIED, ('Occupied'))
     )
 
-    community = models.ForeignKey(Community, on_delete= CASCADE)
+    community = models.ForeignKey(Community, on_delete=CASCADE)
     housecode = models.CharField(unique=True, max_length=200)
     housestatus = models.PositiveSmallIntegerField(choices=STATUS, default=VACANT)
-    
+
     def __str__(self):
         return f"{self.housecode}"
-
-

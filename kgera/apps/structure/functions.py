@@ -82,3 +82,14 @@ def DropFlats(all_comm):
                     no_flats += 1
 
     print(f'Total Number of Houses Deleted Houses : {no_flats}')
+
+
+def DropAll(all_houses):
+    num_id = 0
+    deleted = 0
+    for house in all_houses:
+        id += 1
+        house.id = num_id
+        house.delete()
+        deleted += 1
+    print(f"Deleted {deleted} Houses")

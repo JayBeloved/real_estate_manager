@@ -1,8 +1,5 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import AutoField
-from django.forms.widgets import Widget
-from django.utils.translation import deactivate
 
 # Create your models here.
 NONE = 0
@@ -31,6 +28,16 @@ COUNT_CHOICES = (
     (TEN, ('Ten')),
 )
 
+PAID = 1
+UNPAID = 0
+UNCOMPLETED = 2
+
+TRANSFORMER_LEVY = (
+    (PAID, 'Paid'),
+    (UNPAID, 'Unpaid'),
+    (UNCOMPLETED, 'Payment Uncompleted')
+)
+
 
 class HouseType(models.Model):
     htype = models.CharField('House Type', unique=True, max_length=200)
@@ -45,7 +52,7 @@ class HouseType(models.Model):
 
 class CommunityType(models.Model):
     housetype = models.OneToOneField(HouseType, on_delete=models.CASCADE)
-    commtype = models.CharField('Community Type Code', max_length=3, default='A')
+    commtype = models.CharField('Community Type Code', max_length=3, default='A', unique=True)
     description = models.TextField(default="Description of the Community Type")
 
     def __str__(self):
@@ -73,6 +80,7 @@ class Houses(models.Model):
     community = models.ForeignKey(Community, on_delete=CASCADE)
     housecode = models.CharField(unique=True, max_length=200)
     housestatus = models.PositiveSmallIntegerField(choices=STATUS, default=VACANT)
+    transformer_levy = models.PositiveSmallIntegerField(choices=TRANSFORMER_LEVY, default=PAID)
 
     def __str__(self):
         return f"{self.housecode}"

@@ -1,0 +1,54 @@
+{% load widget_tweaks %}
+
+<div class="col-xl-4 col-md-12">
+    <div class="card">
+        {% if messages %}
+            {% for message in messages %}
+                <h5 class="text-center {{ message.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h5>
+            {% endfor %}
+        {% endif %}
+        <div class="card-header">
+            <h5>Menu</h5>
+        </div>
+        <div class="card-block">
+          <center>
+             <a class="btn btn-grd-primary btn-round waves-effect waves-light m-b-30" href="{% url 'residents:select_house' %}">New Resident</a>
+          </center>
+          <center>
+             <a class="btn btn-grd-primary btn-round waves-effect waves-light m-b-30" href="{% url 'residents:all_residents' %}">Resident's Details</a>
+          </center>
+          <center>
+             <a class="btn btn-grd-primary btn-round waves-effect waves-light m-b-30" href="{% url 'residents:select_request' %}">Account Request</a>
+          </center>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% block extrascript %}
+    <script>
+        var m = document.getElementsByClassName("animate__fadeIn");  // Return an array
+
+        setTimeout(function(){
+        if (m && m.length) {
+            m[0].classList.add('animate__fadeOut');
+        }
+        }, 2000);
+    </script>
+{% endblock extrascript %}

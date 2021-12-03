@@ -1,11 +1,7 @@
-from typing import Dict
 from django.contrib.auth.decorators import login_required
-from django.core import paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from django.views.generic import ListView
-
-from django.core.paginator import Paginator
 
 from django.contrib import messages
 
@@ -59,11 +55,10 @@ def housetype_dashboard(request):
             housetypes = HouseType.objects.order_by('id')
             messages.success(request, f'House Type - {htype} Added Successfuly')
 
-
         else:
             messages.error(request, 'Error validating the form')
 
-        return HttpResponseRedirect(reverse("structure:housetype_dashboard"))
+        return HttpResponseRedirect(reverse("housetype:housetype_dashboard"))
 
     context = {
         'housetype_count': housetype_count,
@@ -83,6 +78,7 @@ class HouseTypeListView(ListView):
     template_name = "structure/all/all_housetype.html"
     context_object_name = "housetypes"
     ordering = ['-id']
+    paginate_by = 6
 
 
 @login_required(login_url="/login/")
@@ -141,6 +137,7 @@ class CommunityTypeListView(ListView):
     template_name = "structure/all/all_commtype.html"
     context_object_name = "commtypes"
     ordering = ['-id']
+    paginate_by = 6
 
 
 @login_required(login_url="/login/")
@@ -199,6 +196,7 @@ class CommunityListView(ListView):
     template_name = "structure/all/all_communities.html"
     context_object_name = "communities"
     ordering = ['-id']
+    paginate_by = 6
 
 
 @login_required(login_url="/login/")
@@ -278,7 +276,7 @@ def houses_dashboard(request):
                                                               housestatus=h_status)
                                 house.save()
                                 total_houses += 1
-            messages.success(request, f"A Total of {total_houses} added successfully")
+            messages.success(request, f"A Total of {total_houses} Houses added successfully")
         else:
             pass
         houses = Houses.objects.order_by('id')[:5]

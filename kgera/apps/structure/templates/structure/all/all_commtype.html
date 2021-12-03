@@ -38,6 +38,27 @@
             </tbody>
         </table>
         <div class="text-right m-r-20">
+          {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+                <a class="badge badge-inverse-primary" href="?page=1" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="First Page">First</a>
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.previous_page_number }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Previous Page">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <a class="badge badge-primary" style="color: white !important;" href="?page={{ num }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Page {{ num }}">{{ num }}</a>
+              {% elif num > page_obj.number|add:'-4' and num < page_obj.number|add:'4' %}
+                <a class="badge badge-inverse-primary" href="?page={{ num }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Page {{ num }}">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.next_page_number }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Next Page">Next</a>
+                <a class="badge badge-inverse-primary" href="?page={{ page_obj.paginator.num_pages }}" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Last Page">Last</a>
+            {% endif %}
+
+          {% endif %}
           <a href="{% url 'commtype:commtype_dashboard' %}" class="b-b-primary text-primary">Back To Dashboard</a>
         </div>
       </div>

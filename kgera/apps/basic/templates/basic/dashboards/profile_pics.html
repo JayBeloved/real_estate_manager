@@ -1,0 +1,64 @@
+{% extends 'basic/layouts/dash_base.html' %}
+
+{% block title %}{{ user.username }} Profile{% endblock title %}
+
+{% block card1 %}
+<div class="col-sm-12">
+    <div class="card">
+      {% if messages %}
+        {% for message in messages %}
+            <h5 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h5>
+        {% endfor %}
+      {% endif %}
+        <div class="card-header">
+            <h5>Welcome {{ user.first_name }}, Edit Your Profile</h5>
+            <div class="card-header-right">
+              <a href="{% url 'resident_profile:profile' %}" class="b-b-primary text-primary">Back To Profile</a>
+            </div>
+        </div>
+        <div class="card-block tab-icon">
+            <ul class="nav nav-tabs md-tabs " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="{% url 'resident_profile:profile_picture' %}" role="tab"><i
+                            class="icofont icofont-home"></i>Profile Pics</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="{% url 'resident_profile:profile_info' %}" role="tab"><i
+                            class="icofont icofont-ui-user "></i>Details</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="{% url 'resident_profile:password_reset' %}" role="tab"><i
+                            class="icofont icofont-ui-message"></i>Password Reset</a>
+                    <div class="slide"></div>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content card-block">
+                <div class="tab-pane active" id="profpics" role="tabpanel">
+                  <div class="card">
+                    <div class="card-header">
+                      <h5>Change Profile Picture</h5>
+                    </div>
+                    <div class="card-block">
+                      <h4 class="text-center">Current Profile Picture</h4>
+                      <center>
+                        <img src="{{ user.profile.image.url }}" width="300" height="300" alt="Current Profile Picture" class="img-fluid img-circle">
+                        <form class="form-material" method="Post" action="{% url 'resident_profile:profile_picture' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group form-primary form-static-label">
+                              {{ form.image }}
+                            </div>
+                            <button class="btn btn-grd-primary btn-round waves-effect waves-light" type="submit">Update</button>
+                        </form>
+                      </center>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card1 %}
+

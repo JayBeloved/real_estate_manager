@@ -1,0 +1,286 @@
+{% extends 'financials/layouts/allbase.html' %}
+
+{% block title %}Financials{% endblock title %}
+
+{% block card1 %}
+  <div class="col-xl-12 col-md-12">
+    <div class="card">
+      {% if messages %}
+          {% for message in messages %}
+              <h6 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h6>
+          {% endfor %}
+      {% endif %}
+        <div class="card-header">
+            <h5>Resident Detail And Financial Standing</h5>
+        </div>
+        <div class="card-block">
+            <div class="row m-b-20">
+              <div class="col-lg-12 col-xl-4">
+                <h5>House :<span class="text-primary"> {{ resident.house.housecode }}</span></h5>
+              </div>
+              <div class="col-lg-12 col-xl-4">
+                 <h5>Resident ID :<span class="text-primary"> {{ resident.resident_code }}</span></h5>
+              </div>
+              <div class="col-lg-12 col-xl-4">
+                {% if resident.occupancy_status == 0 %}
+                   <h5>Occupancy Status :<span class="text-primary"> Vacated House</span></h5>
+                {% else %}
+                  <h6>Status :<span  class="text-primary"> Currently Residing in the House</span></h6>
+                {% endif %}
+              </div>
+          </div>
+            <div class="row">
+              <div class="col-lg-12 col-xl-6">
+                <h5>Outstanding Service Charge :N<span class="text-primary"> {{ standing.service_charge_outstanding }}</span></h5>
+              </div>
+              <div class="col-lg-12 col-xl-6">
+                 <h5>Outstanding Transformer Levy :N<span class="text-primary"> {{ standing.transformer_levy_outstanding }}</span></h5>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock card1 %}
+
+{% block card2 %}
+  <div class="card table-card">
+    <div class="card-header">
+      <h5>Service Charge Payments</h5>
+      <div class="card-header-right">
+        <a href="" class="b-b-primary text-primary m-r-20">View All</a>
+        <button href="" type ="button" class="btn btn-grd-primary btn-sm btn-round waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#svModal">New Payment
+        </button>
+      </div>
+    </div>
+    <div class="card-block">
+      {% if sv_count == 0 %}
+        <div class="text-center">
+          <h6 class="text-dark" style="padding-top: 10px">NO Payment History
+            <span style="padding:10px">
+              <button href="" type ="button" class="btn btn-grd-primary btn-sm btn-round waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#svModal">
+                Pay Service Charge
+              </button>
+            </span>
+          </h6>
+        </div>
+      {% else %}
+        <div class="table-responsive">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Ref</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for payment in sv_payments %}
+                  <tr>
+                    <td>{{ payment.payment_date }}</td>
+                    <td>{{ payment.payment_ref }}</td>
+                    <td>N {{ payment.amount }}</td>
+                    {% if payment.status == 0 %}
+                    <td>Verification Pending</td>
+                    {% else %}
+                    <td>Payment Verified <a href="" class="b-b-primary text-primary">View Receipt</a></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock card2 %}
+
+{% block card3 %}
+   <div class="card table-card">
+    <div class="card-header">
+      <h5>Transformer Levy Payments</h5>
+      <div class="card-header-right">
+        <a href="" class="b-b-primary text-primary m-r-20">View All</a>
+        <button href="" type ="button" class="btn btn-grd-primary btn-sm btn-round waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#tlModal">New Payment
+        </button>
+      </div>
+    </div>
+    <div class="card-block">
+      {% if tl_count == 0 %}
+        <div class="text-center">
+          <h6 class="text-dark" style="padding-top: 10px">NO Payment History
+            <span style="padding:10px">
+              <button href="" type ="button" class="btn btn-grd-primary btn-sm btn-round waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#tlModal">
+                Pay Transformer Levy
+              </button>
+            </span>
+          </h6>
+        </div>
+      {% else %}
+        <div class="table-responsive">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Ref</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for payment in tl_payments %}
+                  <tr>
+                    <td>{{ payment.payment_date }}</td>
+                    <td>{{ payment.payment_ref }}</td>
+                    <td>N {{ payment.amount }}</td>
+                    {% if payment.status == 0 %}
+                    <td>Verification Pending <a href="" class="b-b-primary text-primary">Verify Payment</a></td>
+                    {% else %}
+                    <td>Payment Verified <a href="" class="b-b-primary text-primary">View Receipt</a></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+
+  <!-- Modal Block -->
+    <!-- Service Charge Payment Form Modal -->
+    <div class="modal fade" id="svModal" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1" aria-labelledby="svModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="svModalLabel">Service Charge Payment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>For {{ resident.last_name }} {{ resident.first_name }}</h5>
+                  </div>
+                  <div class="card-block">
+                    <form method="post" action="{%  url 'financials:financials_dashboard' resident.id %}"
+                          class="form-material">
+                      {% csrf_token %}
+
+                      <input type="hidden" value='1' name="formId">
+                      <div class="form-group form-primary form-static-label">
+                        <input type="text" class="form-control" readonly=True value="{{ resident.resident_code }}"
+                               name="resident">
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Resident Unique ID</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ p_form.payment_date }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Date Of Payment</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ p_form.amount }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Amount Paid</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ p_form.payment_note }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Payment Note</label>
+                      </div>
+
+
+                      <button type="submit" class="btn btn-grd-primary btn-round waves-effect waves-light">Submit</button>
+                      <button type="button" class="btn btn-grd-info btn-sm btn-round waves-effect waves-light"
+                        data-bs-dismiss="modal">Close</button>
+                    </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Transformer Levy Payment Form Modal -->
+    <div class="modal fade" id="tlModal" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1" aria-labelledby="tlModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tlModalLabel">Transformer Levy Payment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>For {{ resident.last_name }} {{ resident.first_name }}</h5>
+                  </div>
+                  <div class="card-block">
+                    <form method="post" action="{%  url 'financials:financials_dashboard' resident.id %}" class="form-material">
+                      {% csrf_token %}
+
+                      <input type="hidden" value='2' name="formId">
+                      <div class="form-group form-primary form-static-label">
+                        <input type="text" class="form-control" readonly=True value="{{ resident.resident_code }}" name="resident">
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Resident Unique ID</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ t_form.payment_date }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Date Of Payment</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ t_form.amount }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Amount Paid</label>
+                      </div>
+
+                      <div class="form-group form-primary form-static-label">
+                        {{ t_form.payment_note }}
+                        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                        <label class="float-label">Payment Note</label>
+                      </div>
+
+
+                      <button type="submit" class="btn btn-grd-primary btn-round waves-effect waves-light">Submit</button>
+                      <button type="button" class="btn btn-grd-info btn-sm btn-round waves-effect waves-light"
+                        data-bs-dismiss="modal">Close</button>
+                    </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock card3 %}
+
+{% block extrascript %}
+<script>
+  $(function () {
+        $('#datetimepicker12').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD-MM-YYYY' /*remove this line if you want to use time as well */
+        });
+    });
+    $(function () {
+        $('#datetimepicker13').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD-MM-YYYY' /*remove this line if you want to use time as well */
+        });
+    });
+</script>
+{% endblock extrascript %}

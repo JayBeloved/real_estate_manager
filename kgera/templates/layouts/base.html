@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@
 
     <!--Other Meta Tags-->
     <meta name="description" content="Kabusa Garden Estate Management Application. Built With Django" />
-    <meta name="keywords" content="Admin, Django, Estate Management, bootstrap" />
+    <meta name="keywords" content="Admin, Django, Estate Management, bootstrap, bootstrap5" />
     <meta name="author" content="John J. Lawal"/>
 
     <!--Site Title-->
@@ -18,18 +18,20 @@
     <!--Favicon icon-->
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <!--Required Vendors-->
-    <link rel="stylesheet" href="{% static 'css/waves.min.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/waves.min.css' %}" type="text/css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'icons/themify/themify-icons.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'icons/fontawesome/font-awesome.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'icons/themify/themify-icons.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'icons/fontawesome/font-awesome.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.css' %}"/>
     <!-- am chart export.css -->
     <link rel="stylesheet" href="{% static 'export/export.css' %}" type="text/css" media="all" />
     <!--Custom Styles-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
 
     <!-- Animate.Css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
+    <!-- Date-Picker.Css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datepicker.css' %}"/>
 </head>
 <body>
     <!-- Pre-loader start -->
@@ -58,7 +60,7 @@
                       <div class="circle"></div>
                   </div>
               </div>
-            
+
               <div class="spinner-layer spinner-yellow">
                   <div class="circle-clipper left">
                       <div class="circle"></div>
@@ -70,7 +72,7 @@
                       <div class="circle"></div>
                   </div>
               </div>
-            
+
               <div class="spinner-layer spinner-green">
                   <div class="circle-clipper left">
                       <div class="circle"></div>
@@ -90,7 +92,7 @@
     <div class="pcoded-overlay-box"></div>
     <div class="pcoded-container navbar-wrapper">
         {% include 'includes/_topnav.html' %}
-        
+
         <div class="pcoded-main-container">
             <div class="pcoded-wrapper">
                 <!-- Sidebar -->
@@ -111,6 +113,7 @@
                                         {% block card1 %}{% endblock card1 %}
                                         {% block card2 %}{% endblock card2 %}
                                         {% block card3 %}{% endblock card3 %}
+                                        {% block card4 %}{% endblock card4 %}
 
                                     </div>
                                 </div>
@@ -129,6 +132,8 @@
   <script type="text/javascript" src="{% static 'js/jquery/jquery-ui.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/popper/popper.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap/moment.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap-datetimepicker.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/widget/excanvas.js' %}"></script>
   <!--Waves js-->
   <script type="text/javascript" src="{% static 'js/vendors/waves.min.js' %}"></script>
@@ -142,20 +147,24 @@
   <!--Chart js-->
   <script type="text/javascript" src="{% static 'js/others/Chart.js' %}"></script>
   <!--amchart js-->
-  <script src="../../www.amcharts.com/lib/3/amcharts.js"></script>
-  <script src="{% static 'js/widget/amchart/gauge.js' %}"></script>
-  <script src="{% static 'js/widget/amchart/serial.js' %}"></script>
-  <script src="{% static 'js/widget/amchart/light.js' %}"></script>
-  <script src="{% static 'js/widget/amchart/pie.min.js' %}"></script>
+
   <script src="{% static 'export/export.min.js' %}"></script>
- 
+
   <!--menu js-->
   <script src="{% static 'js/vendors/pcoded.min.js' %}"></script>
   <script src="{% static 'js/others/vertical-layout.min.js' %}"></script>
   <!--custom js-->
   <script type="text/javascript" src="{% static 'js/custom/custom-dashboard.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/custom/script.js' %}"></script>
+  <script>
+    var m = document.getElementsByClassName("animate__fadeIn");  // Return an array
 
+    setTimeout(function(){
+    if (m && m.length) {
+        m[0].classList.add('animate__fadeOut');
+    }
+    }, 2000);
+  </script>
   {% block extrascript %}{% endblock extrascript %}
 </body>
 </html>

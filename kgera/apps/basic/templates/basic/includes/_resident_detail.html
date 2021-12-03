@@ -1,0 +1,58 @@
+<div class="card table-card">
+  {% if messages %}
+        {% for message in messages %}
+            <h6 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h6>
+        {% endfor %}
+    {% endif %}
+  <div class="card-header">
+    <h5>Primary Information</h5>
+    <div class="card-header-right">
+      <a href="{% url 'resident_account:update_info' %}" class="b-b-primary text-primary m-r-20">Update Information</a>
+    </div>
+  </div>
+  <div class="card-block">
+    <form class="form-material" style="padding: 30px !important;" method="get" action="{% url 'residents:resident_details' resident.id %}">
+      <div class="form-group form-primary form-static-label">
+        {{ form.resident_code }}
+        <span class="form-bar"></span>
+        <label class="float-label">Resident Unique ID</label>
+      </div>
+      <div class="form-group form-primary form-static-label">
+        {{ form.first_name }}
+        <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+        <label class="float-label">First Name</label>
+      </div>
+      <div class="form-group form-primary form-static-label">
+        {{ form.last_name }}
+        <span class="form-bar"></span>
+        <label class="float-label">Last Name</label>
+      </div>
+      <div class="form-group form-primary form-static-label">
+        {{ form.resident_email }}
+        <span class="form-bar"></span>
+        <label class="float-label">Email Address</label>
+      </div>
+      <div class="form-group form-primary form-static-label">
+        {{ form.mobile_number }}
+        <span class="form-bar"></span>
+        <label class="float-label">Primary Mobile Number</label>
+      </div>
+      <div class="form-group form-primary form-static-label">
+        {{ form.occupancy_start}}
+        <span class="form-bar"></span>
+        <label class="float-label">Start Of Occupancy</label>
+      </div>
+
+      <div class="form-group form-primary form-static-label">
+          {% if form.occupancy_status.value == 1 %}
+            <input type="text" value="Currently Residing In The House" readonly=True class="form-control">
+          {% else %}
+            <input type="text" value="Vacated House" readonly=True class="form-control">
+          {% endif %}
+          <span class="form-bar"></span>
+          <label class="float-label">Status Of Occupancy</label>
+      </div>
+    </form>
+  </div>
+</div>
+

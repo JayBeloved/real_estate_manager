@@ -25,6 +25,9 @@ urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     path('', include('kgera.apps.core.urls')),
     path('', include('kgera.apps.accounts.urls')),
+    path('', include('kgera.apps.residents.urls')),
+    path('', include('kgera.apps.financials.urls')),
+    path('', include('kgera.apps.basic.urls')),
     path('estate_structure/', include('kgera.apps.structure.urls')),
 ]
 

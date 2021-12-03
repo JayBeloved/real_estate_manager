@@ -1,0 +1,40 @@
+{% extends 'basic/layouts/dash_base.html' %}
+
+{% block title %}{{ user.username }} Profile{% endblock title %}
+
+{% block card1 %}
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Welcome {{ user.first_name }}, Edit Your Profile</h5>
+            <div class="card-header-right">
+              <a href="{% url 'profile:profile' %}" class="b-b-primary text-primary">Back To Profile</a>
+            </div>
+        </div>
+        <div class="card-block tab-icon">
+            <ul class="nav nav-tabs md-tabs " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="{% url 'resident_profile:profile_picture' %}" role="tab"><i
+                            class="icofont icofont-home"></i>Profile Pics</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="{% url 'resident_profile:profile_info' %}" role="tab"><i
+                            class="icofont icofont-ui-user "></i>Details</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="{% url 'resident_profile:password_reset' %}" role="tab"><i
+                            class="icofont icofont-ui-message"></i>Password Reset</a>
+                    <div class="slide"></div>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content card-block">
+                <div class="tab-pane active" id="password" role="tabpanel">
+                    <h2 class="text-center">Reset Password</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock card1 %}

@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     "kgera.apps.accounts",
     "kgera.apps.core",
     "kgera.apps.structure",
+    "kgera.apps.residents",
+    "kgera.apps.financials",
+    "kgera.apps.basic",
     "widget_tweaks",
 
     "bootstrap5",
@@ -174,9 +177,7 @@ LOGIN_URL = 'login'
 
 LOGOUT_URL = 'logout'
 
-LOGIN_REDIRECT_URL = 'index'
-
-LOGOUT_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'landing'
 
 # Messages built-in framework
 

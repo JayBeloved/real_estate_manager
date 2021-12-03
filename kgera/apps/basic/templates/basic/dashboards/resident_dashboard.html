@@ -1,0 +1,57 @@
+{% extends 'basic/layouts/dash_base.html' %}
+
+{% block title %}Resident Dashboard{% endblock title %}
+
+{% block card1 %}
+  <div class="col-xl-12 col-md-12">
+       {% include 'basic/includes/_resident_detail.html' %}
+    </div>
+{% endblock card1 %}
+{% block card2 %}
+    <div class="col-xl-12 col-md-12">
+       {% include 'basic/includes/_resident_properties.html' %}
+    </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="propModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="propModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="propModalLabel">Register New Property</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="card">
+            <div class="card-header">
+              <h5>For {{ resident.last_name }} {{ resident.first_name }}</h5>
+            </div>
+            <div class="card-block">
+              <form method="post" action="{%  url 'resident_account:resident_dashboard' %}" class="form-material">
+                {% csrf_token %}
+
+                <div class="form-group form-primary form-static-label">
+                  {{ prop_form.prop_type }}
+                  <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                  <label class="float-label">Select Property Class</label>
+                </div>
+
+                <div class="form-group form-primary form-static-label">
+                  {{ prop_form.prop_desc }}
+                  <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                  <label class="float-label">Description Of Asset <span class="badge badge-primary">color, specifications etc</span></label>
+                </div>
+                <button type="submit" class="btn btn-grd-primary btn-round waves-effect waves-light">Register</button>
+              </form>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-grd-secondary btn-sm btn-round waves-effect waves-light"
+                data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock card2 %}

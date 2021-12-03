@@ -1,0 +1,46 @@
+<div class="card table-card">
+    <div class="card-header">
+      <h5>Properties</h5>
+      <div class="card-header-right">
+        <a href="" class="b-b-primary text-primary m-r-20"
+           data-bs-toggle="modal" data-bs-target="#propModal">Add New</a>
+    </div>
+    <div class="card-block">
+      {% if prop_count == 0 %}
+        <div class="text-center">
+          <h6 class="text-dark" style="padding-top: 10px">NO Registered Property
+            <span style="padding:10px">
+              <button href="" type ="button" class="btn btn-grd-primary btn-sm btn-round waves-effect waves-light"
+                      data-bs-toggle="modal" data-bs-target="#propModal">
+                Add New
+              </button>
+            </span>
+          </h6>
+        </div>
+      {% else %}
+        <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Type</th>
+                <th>Property Code</th>
+                <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                <tr>
+                    <td>{{ property.property_type }}</td>
+                    <td>{{ property.property_code }}</td>
+                    <td>{{ property.property_desc }}</td>
+                    <td><a href="{% url 'resident_account:edit_property' property.id %}" class="b-b-primary text-primary">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+

@@ -30,8 +30,6 @@ COUNT_CHOICES = (
     (TEN, ('Ten')),
 )
 
-
-
 # True/False Choices
 
 YES = True
@@ -47,20 +45,21 @@ BOOL_CHOICES2 = (
     (NO, ("No, Cancel"))
 )
 
-#House Type Creation Form
+
+# House Type Creation Form
 class HousetypeCreationForm(forms.Form):
     htype = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class' : 'form-control'
+                'class': 'form-control'
             }
         )
     )
-        
+
     is_block = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             },
         ),
         choices=BOOL_CHOICES
@@ -70,25 +69,24 @@ class HousetypeCreationForm(forms.Form):
         choices=COUNT_CHOICES,
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             }
         )
     )
     is_flat = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             },
         ),
         choices=BOOL_CHOICES
     )
 
-
     flat_count = forms.ChoiceField(
         choices=COUNT_CHOICES,
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             }
         )
     )
@@ -96,6 +94,7 @@ class HousetypeCreationForm(forms.Form):
     class meta:
         model = HouseType
         fields = ('htype', 'is_block', 'block_count', 'is_flat', 'flat_count')
+
 
 ###########################################################
 
@@ -105,14 +104,14 @@ class CommunityTypeCreationForm(forms.Form):
         HouseType.objects.all(),
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             }
         )
     )
     commtype = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class' : 'form-control'
+                'class': 'form-control'
             }
         )
     )
@@ -120,7 +119,7 @@ class CommunityTypeCreationForm(forms.Form):
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class' : 'form-control'
+                'class': 'form-control'
             }
         )
     )
@@ -128,6 +127,7 @@ class CommunityTypeCreationForm(forms.Form):
     class meta:
         model = CommunityType
         fields = ('housetype', 'commtype', 'description')
+
 
 ###########################################################
 
@@ -137,14 +137,14 @@ class CommunityCreationForm(forms.Form):
         CommunityType.objects.all(),
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             }
         )
     )
     commnum = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={
-                'class' : 'form-control'
+                'class': 'form-control'
             }
         )
     )
@@ -153,14 +153,16 @@ class CommunityCreationForm(forms.Form):
         model = Community
         fields = ('housetype', 'commtype')
 
-#House Type Approval Form
+
+# House Type Approval Form
 class HouseApprovalForm(forms.Form):
-    approval=forms.ChoiceField(
+    approval = forms.ChoiceField(
         choices=BOOL_CHOICES2,
         widget=forms.Select(
             attrs={
-                'class' : 'form-control form-select'
+                'class': 'form-control form-select'
             }
         ))
+
     class meta:
         fields = ('approval')

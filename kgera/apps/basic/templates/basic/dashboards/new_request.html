@@ -1,0 +1,71 @@
+{% extends 'basic/layouts/allbase.html' %}
+
+{% block title %}Select House{% endblock title %}
+
+{% block card1 %}
+<div class="col-xl-12 col-md-12">
+    <div class="card">
+        {% if messages %}
+            {% for message in messages %}
+                <h5 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h5>
+            {% endfor %}
+        {% endif %}
+      <div class="card-block">
+        <h5>Account Request for House : {{ house }}</h5>
+      </div>
+    </div>
+</div>
+{% endblock card1 %}
+{% block card2 %}
+  <div class="col-xl-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>Account Request Form</h5>
+        <div class="card-header-right">
+
+        </div>
+      </div>
+      <div class="card-block ">
+        <div class="row">
+          <div class="col-lg-12 col-xl-3"></div>
+           <div class="col-lg-12 col-xl-6">
+             <form action="{% url 'new_account:account_request' house.id %}" method="post" class="form-material">
+          {% csrf_token %}
+          <div class="form-group form-primary form-static-label">
+              {{ form.first_name}}
+              <span class="form-bar"></span>
+              <label class="float-label">First Name</label>
+          </div>
+
+          <div class="form-group form-primary form-static-label">
+              {{ form.last_name}}
+              <span class="form-bar"></span>
+              <label class="float-label">Last Name</label>
+          </div>
+
+          <div class="form-group form-primary form-static-label">
+              {{ form.email}}
+              <span class="form-bar"></span>
+              <label class="float-label">Email Address</label>
+          </div>
+
+          <div class="form-group form-primary form-static-label">
+              {{ form.password1}}
+              <span class="form-bar"></span>
+              <label class="float-label">Password To Access Your Account</label>
+          </div>
+           <div class="form-group form-primary form-static-label">
+              {{ form.password2}}
+              <span class="form-bar"></span>
+              <label class="float-label">Re-Enter the Password</label>
+          </div>
+          <button class="btn btn-grd-primary btn-round waves-effect waves-light" type="submit">Send Request</button>
+        </form>
+           </div>
+           <div class="col-lg-12 col-xl-3"></div>
+        </div>
+
+    </div>
+  </div>
+</div>
+{% endblock card2 %}

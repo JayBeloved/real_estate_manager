@@ -1,0 +1,107 @@
+{% extends 'basic/layouts/dash_base.html' %}
+
+{% block title %}Update Primary Info{% endblock title %}
+
+{% block card1 %}
+  <div class="col-xl-12 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Resident Detail</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-lg-12 col-xl-4">
+                <h5>House :<span class="text-primary"> {{ resident.house.housecode }}</span></h5>
+              </div>
+              <div class="col-lg-12 col-xl-4">
+                 <h5>Resident ID :<span class="text-primary"> {{ resident.resident_code }}</span></h5>
+              </div>
+              <div class="col-lg-12 col-xl-4">
+                {% if resident.occupancy_status == 0 %}
+                   <h5>Occupancy Status :<span class="text-primary"> Vacated House</span></h5>
+                {% else %}
+                  <h6>Status :<span  class="text-primary"> Currently Residing in the House</span></h6>
+                {% endif %}
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock card1 %}
+
+{% block card2 %}
+  <div class="col-xl-12 col-md-12">
+    <div class="card">
+      {% if messages %}
+          {% for message in messages %}
+              <h6 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h6>
+          {% endfor %}
+      {% endif %}
+        <div class="card-header">
+            <h5>Update Information</h5>
+            <div class="card-header-right">
+              <a href="{% url 'residents:resident_details' resident.id %}" class="b-b-primary text-primary">Go Back</a>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-lg-12 col-xl-3"></div>
+              <div class="col-lg-12 col-xl-6">
+                    <form class="form-material" method="Post"
+                          action="{% url 'resident_account:update_info' %}">
+                      {% csrf_token %}
+
+                      <!-- Hidden Fields -->
+
+                      <input type="hidden" readonly=True value={{ resident.house }} name="house">
+                      <input type="hidden" readonly=True value={{ resident.resident_code }} name="resident_code">
+                      <input type="hidden" readonly=True value={{ resident.occupancy_status }} name="occupancy_status">
+
+
+                        <div class="form-group form-primary form-static-label">
+                          {{ form.first_name }}
+                          <span class="form-bar m-b-1" style="margin-top:2px !important;"></span>
+                          <label class="float-label">First Name</label>
+                        </div>
+                        <div class="form-group form-primary form-static-label">
+                          {{ form.last_name }}
+                          <span class="form-bar"></span>
+                          <label class="float-label">Last Name</label>
+                        </div>
+                        <div class="form-group form-primary form-static-label">
+                          {{ form.resident_email }}
+                          <span class="form-bar"></span>
+                          <label class="float-label">Email Address</label>
+                        </div>
+                        <div class="form-group form-primary form-static-label">
+                          {{ form.mobile_number }}
+                          <span class="form-bar"></span>
+                          <label class="float-label">Primary Mobile Number</label>
+                        </div>
+                        <div class="form-group form-primary form-static-label">
+                          {{ form.occupancy_start}}
+                          <span class="form-bar"></span>
+                          <label class="float-label">Start Of Occupancy</label>
+                        </div>
+
+                        <button class="btn btn-grd-primary btn-round waves-effect waves-light" type="submit">
+                          Update Information</button>
+                      </form>
+              </div>
+              <div class="col-lg-12 col-xl-3"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+{% endblock card2 %}
+{% block extrascript %}
+    <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker12').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD-MM-YYYY' /*remove this line if you want to use time as well */
+        });
+    });
+    </script>
+{% endblock extrascript %}

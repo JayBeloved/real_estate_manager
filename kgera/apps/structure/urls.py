@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path, include
 from .views import HouseTypeListView, CommunityListView, CommunityTypeListView, HouseListView
 from . import views
 
@@ -12,7 +12,7 @@ urlpatterns = [
         path('', views.commtype_dashboard, name="commtype_dashboard"),
         path('all/', CommunityTypeListView.as_view(), name="all_commtypes")
     ], 'kgera'), namespace='commtype')),
-    
+
     path('communities/', include(([
         path('', views.communities_dashboard, name="communities_dashboard"),
         path('all/', CommunityListView.as_view(), name="all_communities")

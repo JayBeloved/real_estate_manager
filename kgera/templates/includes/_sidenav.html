@@ -34,7 +34,7 @@
     </div>
     <ul class="pcoded-item pcoded-left-item">
       <li class="active">
-        <a href="{% url 'dashboard' %}" class="waves-effect waves-dark">
+        <a href="{% url 'my_admin:dashboard' %}" class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
           <span class="pcoded-mcaret"></span>
@@ -89,26 +89,65 @@
               <span class="pcoded-mcaret"></span>
             </a>
           </li>
-          <li class="">
-            <a href="tabs.html" class="waves-effect waves-dark">
-              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-              <span
-                class="pcoded-mtext"
-                data-i18n="nav.basic-components.breadcrumbs"
-                >Residents</span
-              >
-              <span class="pcoded-mcaret"></span>
-            </a>
-          </li>
         </ul>
       </li>
     </ul>
+    <div class="pcoded-navigation-label" data-i18n="nav.category.forms">
+      Estate Residents
+    </div>
+    <ul class="pcoded-item pcoded-left-item">
+      <li class="">
+        <a href="{% url 'residents:residents_dashboard' %}" class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+          <span
+            class="pcoded-mtext"
+            data-i18n="nav.basic-components.breadcrumbs"
+            >Residents Dashboard</span
+          >
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      <li class="">
+        <a href="{% url 'residents:all_residents' %}" class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+          <span
+            class="pcoded-mtext"
+            data-i18n="nav.basic-components.breadcrumbs"
+            >All Residents</span
+          >
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      <li class="">
+        <a href="{% url 'residents:select_request' %}" class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+          <span
+            class="pcoded-mtext"
+            data-i18n="nav.basic-components.breadcrumbs"
+            >Account Requests</span
+          >
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      <li class="">
+        <a href="{% url 'residents:select_house' %}" class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+          <span
+            class="pcoded-mtext"
+            data-i18n="nav.basic-components.breadcrumbs"
+            >New Resident</span
+          >
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+    </ul>
+
     <div class="pcoded-navigation-label" data-i18n="nav.category.forms">
       Finance &amp; Payments
     </div>
     <ul class="pcoded-item pcoded-left-item">
       <li>
-        <a href="form-elements-component.html" class="waves-effect waves-dark">
+        <a href="{% url 'financials:all_service_charge' %}" class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
           <span class="pcoded-mtext" data-i18n="nav.form-components.main"
             >Service Charge</span
@@ -117,7 +156,7 @@
         </a>
       </li>
       <li>
-        <a href="bs-basic-table.html" class="waves-effect waves-dark">
+        <a href="{% url 'financials:all_transformer_levy' %}" class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
           <span class="pcoded-mtext" data-i18n="nav.form-components.main"
             >Transformer Levy</span
@@ -126,7 +165,7 @@
         </a>
       </li>
     </ul>
-
+    <!--
     <div class="pcoded-navigation-label" data-i18n="nav.category.forms">
       Reports
     </div>
@@ -258,6 +297,7 @@
           </li>
         </ul>
       </li>
-    </ul>
+    </ul>-->
   </div>
 </nav>
+

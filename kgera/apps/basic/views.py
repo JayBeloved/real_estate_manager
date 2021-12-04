@@ -282,7 +282,7 @@ def profile_pics(request):
         if p_form.is_valid():
             p_form.save()
             messages.success(request, 'Profile Picture Updated Successfully')
-            return redirect('profile:profile_picture')
+            return redirect('resident_account:profile_picture')
         else:
             messages.error(request, 'Something Went Wrong, Unable to update profile picture')
     else:

@@ -6,3 +6,5 @@ pytz
 django-widget-tweaks
 django-bootstrap-v5
 Pillow
+boto3
+django-storages

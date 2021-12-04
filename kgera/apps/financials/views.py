@@ -25,7 +25,7 @@ import random
 import string
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def financials_dashboard(request, resident_id):
     if resident_id is None:

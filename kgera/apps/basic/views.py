@@ -118,7 +118,7 @@ def account_request(request, house_id):
     return render(request, 'basic/dashboards/new_request.html', context)
 
 
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def resident_dashboard(request):
     try:
@@ -179,7 +179,7 @@ def resident_dashboard(request):
     return render(request, 'basic/dashboards/resident_dashboard.html', context)
 
 
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def update_info(request):
     try:
@@ -242,7 +242,7 @@ def edit_property(request, property_id):
 
 
 # PROFILE VIEWS #################################################
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def profile(request):
     get_usertype = request.user.user_type
@@ -257,7 +257,7 @@ def profile(request):
     return render(request, 'basic/dashboards/profile.html', {'form': info_form, 'usertype': usertype})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def profile_info(request):
     if request.method == 'POST':
@@ -274,7 +274,7 @@ def profile_info(request):
     return render(request, 'basic/dashboards/profile_details.html', {'form': u_form})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def profile_pics(request):
     if request.method == 'POST':
@@ -282,7 +282,7 @@ def profile_pics(request):
         if p_form.is_valid():
             p_form.save()
             messages.success(request, 'Profile Picture Updated Successfully')
-            return redirect('profile:profile_picture')
+            return redirect('resident_account:profile_picture')
         else:
             messages.error(request, 'Something Went Wrong, Unable to update profile picture')
     else:
@@ -291,7 +291,7 @@ def profile_pics(request):
     return render(request, 'basic/dashboards/profile_pics.html', {'form': p_form})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @basic_required()
 def profile_password(request):
     return render(request, 'basic/dashboards/profile_pword.html')

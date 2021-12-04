@@ -18,7 +18,7 @@ import string
 
 
 # Create your views here.
-@login_required(login_url="/login/")
+@login_required()
 def housetype_dashboard(request):
     # Get data for Counters
 
@@ -81,7 +81,7 @@ class HouseTypeListView(ListView):
     paginate_by = 6
 
 
-@login_required(login_url="/login/")
+@login_required()
 def commtype_dashboard(request):
     # Get data for Counters
 
@@ -140,7 +140,7 @@ class CommunityTypeListView(ListView):
     paginate_by = 6
 
 
-@login_required(login_url="/login/")
+@login_required()
 def communities_dashboard(request):
     # Get data for Counters
 
@@ -199,7 +199,7 @@ class CommunityListView(ListView):
     paginate_by = 6
 
 
-@login_required(login_url="/login/")
+@login_required()
 def houses_dashboard(request):
     # Get data for Counters
 

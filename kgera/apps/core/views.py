@@ -14,7 +14,7 @@ from ..structure.models import Houses, HouseType, Community, CommunityType
 from ..residents.models import Residents, Properties, CommunityHeads
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def admin_index(request):
     # Structure Counter

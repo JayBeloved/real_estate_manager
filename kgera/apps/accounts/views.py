@@ -43,7 +43,7 @@ def login_view(request):
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def profile(request):
     get_usertype = request.user.user_type
@@ -58,7 +58,7 @@ def profile(request):
     return render(request, 'accounts/profile.html', {'form': info_form, 'usertype': usertype})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def profile_info(request):
     if request.method == 'POST':
@@ -75,7 +75,7 @@ def profile_info(request):
     return render(request, 'accounts/profile_details.html', {'form': u_form})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def profile_pics(request):
     if request.method == 'POST':
@@ -92,7 +92,7 @@ def profile_pics(request):
     return render(request, 'accounts/profile_pics.html', {'form': p_form})
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def profile_password(request):
     return render(request, 'accounts/profile_pword.html')

@@ -28,7 +28,7 @@ import random
 
 # Create your views here.
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def residents_dashboard(request):
     # Get data for counters
@@ -91,7 +91,7 @@ class select_house(ListView):
             return queryset
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def newresident_dashboard(request, house_id):
     if house_id is None:
@@ -226,7 +226,7 @@ class all_residents(ListView):
             return queryset
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def residents_info(request, resident_id):
     if resident_id is None:
@@ -303,7 +303,7 @@ def residents_info(request, resident_id):
         return render(request, 'residents/dashboards/resident_info.html', context)
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def update_resident_info(request, resident_id):
     if resident_id is None:
@@ -335,7 +335,7 @@ def update_resident_info(request, resident_id):
         return render(request, 'residents/dashboards/update_resident.html', context)
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def edit_property(request, resident_id, property_id):
     if resident_id is None:
@@ -410,7 +410,7 @@ class select_request(ListView):
             return queryset
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def new_resident_request(request, house_id, request_id):
     if house_id is None:
@@ -532,7 +532,7 @@ def new_resident_request(request, house_id, request_id):
     return render(request, 'residents/dashboards/new_resident_request.html', context)
 
 
-@login_required(login_url="/login/")
+@login_required()
 @admin_required()
 def cancel_account_request(request, pk):
     if pk is None:

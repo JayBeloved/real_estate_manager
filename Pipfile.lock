@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1930ca88518a7c08c30c043f55884becab5987073d8890541b780dd52403cbe1"
+            "sha256": "ab56b636bae7b78926e2daf5257beb5defb011d837b3f0f2b172571b3b25510b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -299,7 +299,7 @@
                 "sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9",
                 "sha256:cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f"
             ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.10.0"
         },
         "matplotlib-inline": {
@@ -512,7 +512,7 @@
                 "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86",
                 "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.8.2"
         },
         "python-decouple": {
@@ -631,7 +631,7 @@
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
                 "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.16.0"
         },
         "soupsieve": {
@@ -662,7 +662,7 @@
                 "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b",
                 "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
             ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.10.2"
         },
         "tox": {
@@ -703,6 +703,14 @@
                 "sha256:c4d647b99872929fdb7bdcaa4fbe7f01413ed3d98077df798530e5b04f116c83"
             ],
             "version": "==0.2.5"
+        },
+        "whitenoise": {
+            "hashes": [
+                "sha256:d234b871b52271ae7ed6d9da47ffe857c76568f11dd30e28e18c5869dbd11e12",
+                "sha256:d963ef25639d1417e8a247be36e6aedd8c7c6f0a08adcb5a89146980a96b577c"
+            ],
+            "index": "pypi",
+            "version": "==5.3.0"
         },
         "zipp": {
             "hashes": [

@@ -29,3 +29,7 @@ django-storages = "*"
 
 [requires]
 python_version = "3.8"
+
+Django~=3.2.9
+Pillow~=8.4.0
+django-debug-toolbar~=3.2.1

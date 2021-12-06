@@ -1,1 +1,1 @@
-web : gunicorn.kgera.wsgi.application
+web : gunicorn kgera.wsgi

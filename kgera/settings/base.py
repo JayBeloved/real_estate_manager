@@ -146,6 +146,8 @@ STATIC_ROOT = BASE_DIR.parent.parent / "staticfiles"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",

@@ -1,1 +1,1 @@
-web : gunicorn kgera.wsgi
+web: gunicorn kgera.wsgi --log-file -

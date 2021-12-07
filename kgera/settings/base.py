@@ -1,3 +1,5 @@
+import django_heroku
+
 from pathlib import Path
 
 import dj_database_url
@@ -201,3 +203,5 @@ MESSAGE_TAGS = {
     messages.WARNING: 'text-warning',
     messages.ERROR: 'text-danger',
 }
+
+django_heroku.settings(locals())

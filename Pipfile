@@ -10,7 +10,7 @@ python-decouple = "3.5"
 pytz = "2021.3"
 django-widget-tweaks = "1.4.9"
 django-bootstrap-v5 = "1.0.7"
-black = "21.6b0"
+black = "21.12b0"
 coverage = "5.5"
 factory-boy = "3.2.0"
 flake8 = "3.9.2"
@@ -25,6 +25,7 @@ Django = "3.2.9"
 boto3 = "1.20.20"
 django-storages = "1.12.3"
 whitenoise = "*"
+django-heroku = "0.3.1"
 
 [dev-packages]
 

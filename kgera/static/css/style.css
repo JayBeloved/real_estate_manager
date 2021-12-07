@@ -766,12 +766,12 @@ button.close {
     margin: -7px 0 0 -15px;
     width: 30px;
     height: 20px;
-    background: url("../images/tooltip/tooltip1.svg") center center no-repeat;
+    background: url("") center center no-repeat;
     background-size: 100%; }
 
 .tooltip-content3 {
   position: absolute;
-  background: url("../images/tooltip/shape1.html") center bottom no-repeat;
+  background: url("") center bottom no-repeat;
   background-size: 100% 100%;
   z-index: 9999;
   width: 200px;

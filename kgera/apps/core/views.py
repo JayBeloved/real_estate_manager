@@ -6,7 +6,7 @@ from ..core.decorators import admin_required
 from django.utils.decorators import method_decorator
 from .decorators import admin_required, basic_required
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 # noinspection PyUnresolvedReferences
@@ -53,5 +53,5 @@ def admin_index(request):
 
 
 def landing(request):
-    return render(request, 'core/landing.html')
+    return HttpResponseRedirect("https://kgera.org.ng/")
 

@@ -98,16 +98,15 @@ def account_request(request, house_id):
                 rq = AccRequest.objects.create(house=house, first_name=first_name,
                                                last_name=last_name, email=email, password=p_word1)
                 rq.save()
-                messages.success(request, f'Account request sent successfully \n '
-                                          f'You will get notified when you account is created')
+
+                return redirect(request, 'new_account:request_success')
             else:
                 form = form
                 messages.error(request, 'The Passwords did not match')
                 return redirect(request, 'new_account:account_request', {'form': form})
 
         else:
-            messages.error(request, 'Error validating the form')
-            messages.info(request, form.errors)
+            return redirect(request, 'new_account:request_error')
         return HttpResponseRedirect(reverse("landing"))
 
     context = {
@@ -117,6 +116,13 @@ def account_request(request, house_id):
 
     return render(request, 'basic/dashboards/new_request.html', context)
 
+
+def request_success(request):
+    return render(request, 'basic/dashboards/request_success.html')
+
+
+def request_error(request):
+    return render(request, 'basic/dashboards/request_error.html')
 
 @login_required()
 @basic_required()

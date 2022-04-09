@@ -8,6 +8,8 @@ urlpatterns = [
     path('new_account/', include(([
         path('select_house/', select_house.as_view(), name="select_house"),
         path('account_request/house<int:house_id>/', views.account_request, name="account_request"),
+        path('success', views.request_success, name="request_success"),
+        path('error', views.request_error, name="request_error"),
     ], 'kgera'), namespace="new_account")),
 
     path('resident/', include(([

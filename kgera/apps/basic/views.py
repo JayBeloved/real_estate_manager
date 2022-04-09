@@ -99,15 +99,15 @@ def account_request(request, house_id):
                                                last_name=last_name, email=email, password=p_word1)
                 rq.save()
 
-                return redirect(request, 'new_account:request_success')
+                return redirect('new_account:request_success')
             else:
                 form = form
                 messages.error(request, 'The Passwords did not match')
                 return redirect(request, 'new_account:account_request', {'form': form})
 
         else:
-            return redirect(request, 'new_account:request_error')
-        return HttpResponseRedirect(reverse("landing"))
+            return redirect('new_account:request_error')
+        return HttpResponseRedirect("landing")
 
     context = {
         'house': house,

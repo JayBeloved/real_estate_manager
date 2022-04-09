@@ -107,7 +107,7 @@ def account_request(request, house_id):
 
         else:
             return redirect(request, 'new_account:request_error')
-        return HttpResponseRedirect(reverse("landing"))
+        return HttpResponseRedirect("landing")
 
     context = {
         'house': house,

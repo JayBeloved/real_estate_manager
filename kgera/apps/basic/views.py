@@ -16,17 +16,16 @@ from django.urls import reverse
 
 from ..structure.models import Houses, Community
 from ..residents.models import Residents, Properties
-from ..accounts.models import User
 from .models import AccRequest
 
 from .forms import account_request_form, ProfileInfoForm, ProfileInfoUpdateForm, ProfilePicsUpdateForm
 from ..residents.forms import ResidentInfoForm, ResidentUpdateForm, NewPropertyForm, EditPropertyForm
 
-from ..financials.models import ResidentFinancialStanding, ServiceChargePayments, TransformerLevyPayments
+# from ..financials.models import ResidentFinancialStanding, ServiceChargePayments, TransformerLevyPayments
 
 
-import string
-import random
+# import string
+# import random
 
 ###################
 
@@ -92,18 +91,23 @@ def account_request(request, house_id):
             p_word1 = form.cleaned_data.get("password1")
             p_word2 = form.cleaned_data.get("password2")
 
-            if p_word1 == p_word2:
-
-                house = Houses.objects.get(id=house_id)
-                rq = AccRequest.objects.create(house=house, first_name=first_name,
-                                               last_name=last_name, email=email, password=p_word1)
-                rq.save()
-
-                return redirect('new_account:request_success')
-            else:
-                form = form
-                messages.error(request, 'The Passwords did not match')
+            if Residents.objects.filter(resident_email=email).exist():
+                messages.error(request, f'Email already in use by another Resident. Use a unique email address')
                 return redirect(request, 'new_account:account_request', {'form': form})
+            else:
+
+                if p_word1 == p_word2:
+
+                    house = Houses.objects.get(id=house_id)
+                    rq = AccRequest.objects.create(house=house, first_name=first_name,
+                                                   last_name=last_name, email=email, password=p_word1)
+                    rq.save()
+
+                    return redirect('new_account:request_success')
+                else:
+                    form = form
+                    messages.error(request, 'The Passwords did not match')
+                    return redirect(request, 'new_account:account_request', {'form': form})
 
         else:
             return redirect('new_account:request_error')
@@ -197,8 +201,14 @@ def update_info(request):
     if request.method == 'POST':
         u_form = ResidentUpdateForm(request.POST, instance=sel_resident)
         if u_form.is_valid():
-            u_form.save()
-            messages.success(request, 'Resident Detail Update Successful')
+
+            if Residents.objects.filter(resident_email=u_form.cleaned_data.get('resident_email')).exists():
+                messages.error(request, f'Email already in use by another Resident. Use a unique email address')
+            elif Residents.objects.filter(mobile_number=u_form.cleaned_data.get('mobile_number')).exists():
+                messages.error(request, f'Mobile Number already in use by another Resident.')
+            else:
+                u_form.save()
+                messages.success(request, 'Resident Detail Update Successful')
             return redirect('resident_account:resident_dashboard')
         else:
             messages.error(request, 'Something Went Wrong, Unable to update Resident Details')

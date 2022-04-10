@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from ..core.decorators import admin_required
 from django.shortcuts import render
 
 from django.views.generic import ListView
@@ -19,6 +20,7 @@ import string
 
 # Create your views here.
 @login_required()
+@admin_required()
 def housetype_dashboard(request):
     # Get data for Counters
 
@@ -49,11 +51,14 @@ def housetype_dashboard(request):
             is_flat = form.cleaned_data.get("is_flat")
             flat_count = form.cleaned_data.get("flat_count")
 
-            ht = HouseType.objects.create(htype=htype, is_block=is_block, block_count=block_count, is_flat=is_flat,
+            if HouseType.objects.filter(htype=htype).exists():
+                messages.error(request, f'House Type - {htype} Already Exists.')
+            else:
+                ht = HouseType.objects.create(htype=htype, is_block=is_block, block_count=block_count, is_flat=is_flat,
                                           flat_count=flat_count)
-            ht.save()
-            housetypes = HouseType.objects.order_by('id')
-            messages.success(request, f'House Type - {htype} Added Successfuly')
+                ht.save()
+                housetypes = HouseType.objects.order_by('id')
+                messages.success(request, f'House Type - {htype} Added Successfuly')
 
         else:
             messages.error(request, 'Error validating the form')
@@ -82,6 +87,7 @@ class HouseTypeListView(ListView):
 
 
 @login_required()
+@admin_required()
 def commtype_dashboard(request):
     # Get data for Counters
 
@@ -110,10 +116,13 @@ def commtype_dashboard(request):
             commtype = form.cleaned_data.get("commtype")
             description = form.cleaned_data.get("description")
 
-            ht = CommunityType.objects.create(housetype=housetype, commtype=commtype, description=description)
-            ht.save()
-            commtypes = CommunityType.objects.order_by('-id')[:5]
-            messages.success(request, f'Community Type - {commtype} Added Successfuly')
+            if CommunityType.objects.filter(commtype=commtype).exists():
+                messages.error(request, f'Community Type - {commtype} Already Exists.')
+            else:
+                ht = CommunityType.objects.create(housetype=housetype, commtype=commtype, description=description)
+                ht.save()
+                commtypes = CommunityType.objects.order_by('-id')[:5]
+                messages.success(request, f'Community Type - {commtype} Added Successfully.')
         else:
             messages.error(request, 'Error validating the form')
 
@@ -141,6 +150,7 @@ class CommunityTypeListView(ListView):
 
 
 @login_required()
+@admin_required()
 def communities_dashboard(request):
     # Get data for Counters
 
@@ -170,10 +180,13 @@ def communities_dashboard(request):
             commcode = f"{communitytype}{commnum}"
             # Generate Community Code
 
-            ht = Community.objects.create(communitytype=communitytype, commnum=commnum, commcode=commcode)
-            ht.save()
-            communities_count = all_communities.count()
-            messages.success(request, f'Community - {commcode} Added Successfuly')
+            if Community.objects.filter(commcode=commcode).exists():
+                messages.success(request, f'Community - {commcode} Already Exists.')
+            else:
+                ht = Community.objects.create(communitytype=communitytype, commnum=commnum, commcode=commcode)
+                ht.save()
+                communities_count = all_communities.count()
+                messages.success(request, f'Community - {commcode} Added Successfuly')
         else:
             messages.error(request, 'Error Validating The Form')
 
@@ -200,6 +213,7 @@ class CommunityListView(ListView):
 
 
 @login_required()
+@admin_required()
 def houses_dashboard(request):
     # Get data for Counters
 

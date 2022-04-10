@@ -99,100 +99,9 @@
                     <!-- Main-body start -->
                     <div class="main-body container">
                          <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                            <div class="col-10 col-sm-8 col-lg-6">
-                                <img src="{% static 'images/landing1.png' %}"
-                                    class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500"
-                                    loading="lazy">
-
-                                {% if messages %}
-                                 <div class="card card-shadow">
-                                      {% for message in messages %}
-                                          <h5 class="text-center {{ messages.tags }} animate__animated animate__fadeIn animate__delay-3s">{{ message }}</h5>
-                                      {% endfor %}
-                                 </div>
-                                {% endif %}
-
-                            </div>
-                            <div class="col-lg-6">
-                                <h1 class="display-5 fw-bold lh-1 mb-3" style="color:black !important;">KGERA Estate Management Software</h1>
-                                <p class="lead">Bringing Simplicity, Efficiency and Effective to Estate Management...
-                                </p>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                    <a class="btn btn-grd-primary btn-round waves-effect waves-light"
-                                    href="{% url 'login' %}">
-                                      Login</a>
-                                    <a class="btn btn-outline-primary btn-round waves-effect waves-light" href="{% url 'new_account:select_house' %}">
-                                     Create Account</a>
-                                </div>
-                            </div>
+                            {% block card1 %}{% endblock card1 %}
+                            {% block card2 %}{% endblock card2 %}
                         </div>
-                      <div class="col-xl-12 col-md-12">
-                        <div class="card">
-                          <div class="card-header">
-                                <h5>CREATING A RESIDENT ACCOUNT</h5>
-                          </div>
-                          <div class="card-block card-body">
-                            <p class="text-center" style="font-size:20px;">A Resident Account is user account for residents of the estate. The Account is to be
-                                  active for the duration of the resident's stay in the estate. Each Resident Account is
-                                  connected to the current house the resident is occupying.
-                            </p>
-                            <div class="row">
-                              <div class="col-lg-12 col-xl-3">
-                                <div class="card card-shadow">
-                                  <div class="card-header">
-                                <h5>STEP 1</h5>
-                             </div>
-                                  <div class="card-block card-body">
-                                    <p style="font-size:15px">Click the Create Account Button Above or <a href="" class="b-b-primary text-primary">
-                                      click here</a>
-                                    </p>
-                                    <ul>
-                                      <li class="text-info"></li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-12 col-xl-3">
-                                <div class="card card-shadow">
-                                  <div class="card-header">
-                                    <h5>STEP 2</h5>
-                                  </div>
-                                  <div class="card-block card-body">
-                                    <p style="font-size:15px;">Search and Select the house you are currently residing in and click the
-                                      <span style="text-transform:uppercase; color:black;">request account button</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-12 col-xl-3">
-                                <div class="card card-shadow">
-                                  <div class="card-header">
-                                    <h5>STEP 3</h5>
-                                 </div>
-                                  <div class="card-block card-body">
-                                    <p style="font-size:15px;">Fill the Account Creation Request Form and Submit.</p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-lg-12 col-xl-3">
-                                <div class="card card-shadow">
-                                  <div class="card-header">
-                                    <h5>STEP 4</h5>
-                                 </div>
-                                  <div class="card-block card-body">
-                                    <p style="font-size:15px;">An Admin Verifies the request and approves the request.</p>
-                                    <ul>
-                                      <li>Your Default Username is the first 4 letters of your Last Name and the
-                                        first 3 of your first name</li>
-                                      <li>Example: Adebisi Michael = AdebMic</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                     </div>
                 </div>
@@ -222,6 +131,7 @@
   <!--Chart js-->
   <script type="text/javascript" src="{% static 'js/others/Chart.js' %}"></script>
   <!--amchart js-->
+
   <script src="{% static 'export/export.min.js' %}"></script>
 
   <!--menu js-->

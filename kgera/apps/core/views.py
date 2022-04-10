@@ -1,10 +1,9 @@
 from django.db.models.aggregates import Count
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from ..core.decorators import admin_required
 
 from django.utils.decorators import method_decorator
-from .decorators import admin_required, basic_required
+from .decorators import admin_required
 from django.template import loader
 from django.http import HttpResponseRedirect
 

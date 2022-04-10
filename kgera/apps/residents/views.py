@@ -121,36 +121,41 @@ def newresident_dashboard(request, house_id):
             occ_start = form.cleaned_data.get("occ_start")
             status = form.cleaned_data.get("status")
 
-            resident_code = 0
+            if Residents.objects.filter(resident_email=email).exist():
+                messages.error(request, f'Email already in use by another Resident. Use a unique email address')
+            elif Residents.objects.filter(mobile_number=mobile).exists():
+                messages.error(request, f'Mobile Number already in use by another Resident.')
+            else:
+                resident_code = 0
 
-            # Generate Unique Resident Code
-            # Randomly Choose Letters for adding to code
-            def gencode():
-                char1 = random.choice(string.ascii_uppercase)
-                char2 = random.choice(string.ascii_lowercase)
-                char3 = random.choice(string.ascii_letters)
-                char4 = random.choice('1234567890')
-                char5 = random.choice(string.ascii_uppercase)
-                char6 = random.choice(string.ascii_lowercase)
-                char7 = random.choice(string.ascii_letters)
+                # Generate Unique Resident Code
+                # Randomly Choose Letters for adding to code
+                def gencode():
+                    char1 = random.choice(string.ascii_uppercase)
+                    char2 = random.choice(string.ascii_lowercase)
+                    char3 = random.choice(string.ascii_letters)
+                    char4 = random.choice('1234567890')
+                    char5 = random.choice(string.ascii_uppercase)
+                    char6 = random.choice(string.ascii_lowercase)
+                    char7 = random.choice(string.ascii_letters)
 
-                return f"rsd/{char1}{char2}{char3}-{char4}{char5}/{char6}{char7}"
+                    return f"rsd/{char1}{char2}{char3}-{char4}{char5}/{char6}{char7}"
 
-            rsd = gencode()
-            resident_code = rsd
-            while Residents.objects.filter(resident_code=rsd):
                 rsd = gencode()
-                if not Residents.objects.filter(resident_code=gencode):
-                    resident_code = gencode
+                resident_code = rsd
+                while Residents.objects.filter(resident_code=rsd):
+                    rsd = gencode()
+                    if not Residents.objects.filter(resident_code=gencode):
+                        resident_code = gencode
 
-            rs = Residents.objects.create(house=house, resident_code=resident_code, first_name=first_name,
+                rs = Residents.objects.create(house=house, resident_code=resident_code, first_name=first_name,
                                           last_name=last_name, resident_email=email, mobile_number=mobile,
                                           occupancy_start=occ_start, occupancy_status=status)
-            rs.save()
-            if house.housestatus == 0:
-                house.housestatus = 1
-                house.save()
-            messages.success(request, f'Resident {resident_code}-{first_name} {last_name} Added Successfully')
+                rs.save()
+                if house.housestatus == 0:
+                    house.housestatus = 1
+                    house.save()
+                messages.success(request, f'Resident {resident_code}-{first_name} {last_name} Added Successfully')
 
         else:
             messages.error(request, 'Error validating the form')
@@ -477,7 +482,8 @@ def new_resident_request(request, house_id, request_id):
 
             # Generate User Name
             def gen_name(firstname, lastname):
-                user_name = f"{lastname[:4]}{firstname[:3]}"
+                gen = f"{lastname[:4]}{firstname[:3]}"
+                user_name = gen.lower()
 
                 while User.objects.filter(username=user_name):
                     similar_list = User.objects.filter(username__icontains=user_name).__len__()

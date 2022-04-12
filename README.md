@@ -1,2 +1,2 @@
-# estatemanager
-Simple Estate Management Application
+# Real Estate Manager
+Simple Real Estate Management Application
